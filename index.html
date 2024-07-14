@@ -1,0 +1,945 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Node JS - Tutorial 2024</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4697d754-cf0c-4d78-a5a7-d9bb0e030a58" class="page sans"><header><img class="page-cover-image" src="https://artoonsolutions.com/wp-content/uploads/2024/04/Inner-image-1-01-19-scaled.webp" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🔖</span></div><h1 class="page-title">Node JS - Tutorial 2024</h1><p class="page-description"></p></header><div class="page-body"><p id="77d16817-46c0-4992-a1bd-93963ab22cfe" class="">Node.js is a powerful JavaScript runtime built on Chrome&#x27;s V8 JavaScript engine. It allows developers to execute JavaScript server-side, enabling the creation of scalable and high-performance network applications. With its non-blocking, event-driven architecture, Node.js is particularly well-suited for building real-time applications and microservices.</p><ul id="49d62a74-88c4-4649-a4f2-c036e5a8fc48" class="bulleted-list"><li style="list-style-type:disc">NodeJS is an <mark class="highlight-yellow"><strong>open-source JS runtime</strong></mark><strong>.</strong></li></ul><ul id="a2baf536-b2f8-410a-be95-8693330ad626" class="bulleted-list"><li style="list-style-type:disc">It uses the <mark class="highlight-teal"><strong>V8 JavaScript Engine</strong></mark> that Google Chrome uses.</li></ul><ul id="a0cc3351-e48a-4710-b1e4-4c799cbbf825" class="bulleted-list"><li style="list-style-type:disc">Takes JS out of the browser.</li></ul><ul id="1d80a038-d75a-4139-a575-97fd6483671a" class="bulleted-list"><li style="list-style-type:disc">Fast, Scalable, and Popular.</li></ul><hr id="420ff0fe-f3f9-49d7-9460-b7bc23ed8069"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">How does NodeJS work?</summary><div class="indented"><figure id="403ae2a8-3d11-46d0-8447-30bb20a5160f" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/Untitled.png"><img style="width:939px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/Untitled.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="82652b02-428d-4ee3-a73d-bcfffafe65c6"><div style="font-size:1.5em"><span class="icon">📄</span></div><div style="width:100%">V8 Engine - Single Threaded - Non-Blocking - Event Loop</div></figure></div></details><hr id="f79dbbcf-54ff-480f-8d2f-91fdf39465fc"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">What is NodeJS used for?</summary><div class="indented"><ul id="02db3c26-6bd8-4131-a364-2766f248af99" class="bulleted-list"><li style="list-style-type:disc">APIs</li></ul><ul id="24185c3e-cfe6-4ea5-b011-756f5ead667b" class="bulleted-list"><li style="list-style-type:disc">Server-rendered Apps</li></ul><ul id="05433429-b315-49cc-a861-e84932b2c1f2" class="bulleted-list"><li style="list-style-type:disc">Real-time Apps</li></ul><ul id="def69cef-2ec2-43ce-b629-1f80fa07e03d" class="bulleted-list"><li style="list-style-type:disc">Microservices</li></ul><ul id="013c5ae2-68c2-4ac5-87c7-b13dc93eb285" class="bulleted-list"><li style="list-style-type:disc">Command Line Tools</li></ul><ul id="5e6d6398-a475-4355-bf82-8c115058d532" class="bulleted-list"><li style="list-style-type:disc">Bots</li></ul><ul id="2b13c331-4cd8-4fc0-b701-eae8c57030dd" class="bulleted-list"><li style="list-style-type:disc">Web scraping</li></ul><ul id="6c9a8374-db3e-430e-91c6-9dae15ce53a9" class="bulleted-list"><li style="list-style-type:disc">Web Servers </li></ul></div></details><hr id="436d4a26-fb82-45b2-973d-2c1f1bce83a5"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>Prerequisites for learning Node.js?</strong></summary><div class="indented"><h3 id="9f32e65f-a85a-4244-a43b-832c3747c627" class=""><strong>1. JavaScript</strong></h3><p id="a9adff66-c267-47fc-a169-489428f39c80" class="">The concepts include having knowledge about <mark class="highlight-red">expressions, loops, data structures, callbacks, functions, objects</mark>, <code><strong>this</strong></code> keyword, event handlers, and other related topics.</p><h3 id="6e94d0e0-9768-42f2-a32f-0f1ce52f6d74" class=""><strong>2. Asynchronous code</strong></h3><h3 id="9cc97445-abca-46be-8868-b22a235c8701" class=""><strong>4. NPM</strong></h3><p id="5f0c0eb5-aa6b-4dda-bd37-12accc7a2750" class="">Node Package Manager or the NPM is a very powerful tool that helps in managing the server-side dependencies of any Node.js project.</p><h3 id="01db79b7-2a36-49b1-a57d-08bbe9731ada" class=""><strong>5. HTTP</strong></h3><p id="aefc25db-ef53-46a8-9351-a6f3221ac0ca" class="">Having a basic knowledge of HTTP requests and HTTP methods like GET, POST, PUT, PATCH, DELETE, etc., will be beneficial for you while working on a web project.</p></div></details><hr id="eecb6c76-5058-4f95-a6d3-90e9c39dc91a"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Installation</summary><div class="indented"><ul id="33f838d0-9302-4bd2-b7c2-665f8f49c94b" class="bulleted-list"><li style="list-style-type:disc"><strong>Download Node.js Installer</strong>:<ul id="fdd766ec-5e94-4c4c-b28f-76dee12d8b4b" class="bulleted-list"><li style="list-style-type:circle">Visit the official Node.js website: <a href="https://nodejs.org/">nodejs.org</a></li></ul><ul id="b628255c-23e4-45e1-908a-2f2757e4bc50" class="bulleted-list"><li style="list-style-type:circle">Click on the &quot;Downloads&quot; button.</li></ul><ul id="dd851e66-8394-4cba-9524-975d9553a16d" class="bulleted-list"><li style="list-style-type:circle">Download the Windows Installer (<code>.msi</code> file), either the LTS (Long Term Support) version or the Current version depending on your preference.</li></ul></li></ul><ul id="4fb92aeb-a129-4e13-9f35-a4a575cef6a4" class="bulleted-list"><li style="list-style-type:disc"><strong>Run the Installer</strong>:<ul id="0439a47b-dc1f-48ec-95ea-e8bc1611b0e1" class="bulleted-list"><li style="list-style-type:circle">Once the download is complete, run the <code>.msi</code> installer file.</li></ul><ul id="b2f7cfcd-3599-427e-a005-d4e33fa157af" class="bulleted-list"><li style="list-style-type:circle">Follow the prompts in the Node.js Setup Wizard.</li></ul><ul id="216aabc0-abf1-4dc2-8e22-160b1996cc6a" class="bulleted-list"><li style="list-style-type:circle">Accept the license agreement.</li></ul><ul id="129a9ad5-ffd0-4afc-bd0a-75730f20a357" class="bulleted-list"><li style="list-style-type:circle">Click &quot;Next&quot; for the default installation settings.</li></ul><ul id="98f95d94-ce57-4333-9d58-d988e3e823e5" class="bulleted-list"><li style="list-style-type:circle">Click &quot;Install&quot; to install Node.js with the default settings.</li></ul><ul id="6a7a7aff-ecf0-4877-8245-c579929b1340" class="bulleted-list"><li style="list-style-type:circle">Click &quot;Finish&quot; when the installation completes.</li></ul></li></ul><ul id="f243bb40-f400-4fdd-92ad-78712ecabbb1" class="bulleted-list"><li style="list-style-type:disc"><strong>Verify Installation</strong>:<ul id="be144ec3-573f-456b-bfd7-efb871cb713f" class="bulleted-list"><li style="list-style-type:circle">Open a command prompt (search for &quot;cmd&quot; in the Start menu).</li></ul><ul id="11633ce6-e15a-4243-9acc-d695748ccf95" class="bulleted-list"><li style="list-style-type:circle">Type <code>node -v</code> and press Enter. This should print the installed Node.js version.</li></ul><ul id="8236772d-8338-4bc6-8b04-c17f181ca0ee" class="bulleted-list"><li style="list-style-type:circle">Type <code>npm -v</code> and press Enter. This should print the installed npm (Node Package Manager) version.</li></ul></li></ul><hr id="a3d5c331-a895-491c-9f19-f0fa5817207f"/></div></details><hr id="5dd6cbef-5418-4ae8-b8d3-627fde6c8b15"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>NPM Commands</strong></summary><div class="indented"><p id="d6cf098a-c5b4-4092-9ef0-8daa4fe490ec" class="">What are some NPM commands you should know?</p><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>What is NPM?</strong></summary><div class="indented"><p id="ce172427-772e-4bbc-b31c-d713de31332d" class="">NPM stands for <strong>Node Package Manager</strong>, and is used when installing third party packages or modules in node applications.</p><h3 id="e7c56075-49ac-4cab-8ed9-3627194bc0fd" class=""><strong>Some basic NPM commands</strong></h3><ol type="1" id="bbec7803-f5fd-4d58-a0fd-4d1661209aad" class="numbered-list" start="1"><li><code>npm init</code><p id="4ef3ebc6-d53b-4185-b503-ade75b0f3019" class="">This is used to create the <code>package.json</code> file.</p></li></ol><ol type="1" id="f39edfbe-a201-4d5d-a30b-8b9b84293dd2" class="numbered-list" start="2"><li><code>npm ls</code> This is used to list the packages or modules in your project together with their dependencies.</li></ol><ol type="1" id="6ae0329b-6869-4b26-8cc8-ea6588e2dd45" class="numbered-list" start="3"><li><code>npm i &lt;package&gt;</code> or <code>npm install &lt;package&gt;</code><p id="e3bec0b3-ba24-4063-a1df-dad0d47767c7" class="">This is the command used to install a package.</p></li></ol><ol type="1" id="4f1a196d-a673-40e7-8dca-aa39c223072d" class="numbered-list" start="4"><li><code>npm un &lt;package&gt;</code> or <code>npm uninstall &lt;package&gt;</code><p id="5dc0c52f-3745-4b02-adf9-ce264dd8bac7" class="">This is used to uninstall a package.</p></li></ol><ol type="1" id="6a10bb71-2ab2-4639-95c2-1ac2f0543536" class="numbered-list" start="5"><li><code>npm publish</code><p id="7520a338-7476-4040-9e20-7a938e7e1709" class="">This is used to publish a package.</p></li></ol><ol type="1" id="f97abec5-7cfa-4af9-9262-664edd92efb5" class="numbered-list" start="6"><li><code>npm run</code><p id="f937bad2-1040-4e29-8796-f0b3e7036256" class="">This lists the available scripts that can be run on your project.</p></li></ol><ol type="1" id="65a4979e-a85e-461f-a7c0-e7feb11ca6b7" class="numbered-list" start="7"><li><code>npm stop</code><p id="dab3dd9c-ec18-43b5-b8ac-e112ffe8fca4" class="">This is used to stop a script.</p></li></ol><ol type="1" id="cdf45425-4dc7-434e-bc3b-fda24bc6bb80" class="numbered-list" start="8"><li><code>npm cache clean --force</code> This force cleans the <code>npm</code> cache.</li></ol><ol type="1" id="504f4b33-53c2-4a6f-bb38-cde931f16459" class="numbered-list" start="9"><li><code>npm search &lt;package&gt;</code><p id="ee526739-872e-457c-a4c6-5135496bab07" class="">This is used to search for a package in your project folder.</p></li></ol><ol type="1" id="04304454-7776-4687-b073-b2c0ddc4c9c0" class="numbered-list" start="10"><li><code>npm view &lt;package&gt;</code><p id="21a81ee7-0f4f-49c9-b9a2-d08b538eb7c4" class="">This is used to show data about a package and print it to the screen.</p></li></ol></div></details></div></details><hr id="8943b1a3-b17f-40d6-9688-8fded4ec03dd"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>Modules in NodeJS</strong></summary><div class="indented"><p id="cc88ef2f-c1ea-405e-b855-48f88568e446" class="">In Node.js, a module is essentially a reusable block of code that can be used to perform a specific set of tasks or provide a specific functionality. A module can contain variables, functions, classes, objects, or any other code that can be used to accomplish a particular task or set of tasks.</p><p id="5cf19a19-ebf0-457f-b740-39da5e784fdf" class="">The primary purpose of using modules in Node.js is to help organize code into smaller, more manageable pieces. A modules can then be imported at any time and used flexibly which helps in creating reusable code components that can be shared across multiple projects.</p><p id="f8e37c98-97a2-46ec-b321-b699a4e8c414" class="">To understand this, consider this example: Let&#x27;s say you have defined lots of functions in your code that works with a huge volume of JSON data.</p><p id="ae9f00ce-ccd2-49fb-9d2a-35a57cf41080" class="">Losing your sleep and increased anxiety levels are common side effects of keeping all this stuff (functions + data + some other logic) in one single file.</p><p id="09b6c2cd-ad75-472c-afa6-123b28c004f8" class="">So you, being a clever programmer, thought of making a separate file for the JSON data and a separate file for storing all the functions. Now, you can simply import the data and the functions whenever you want and use them accordingly. This method increases efficiency as your file size reduces drastically. This is the concept of modules!</p><p id="debb51f1-5619-4749-a863-3fd66067286e" class="">Let&#x27;s see how we can make our own modules. For this, we are going to write some code where we will be defining a function called <code>sayHello()</code> in a file called <code>hello.js</code>. This function will accept a <code>name</code> as the parameter and simply print a greeting message in the console.</p><p id="9f7e8edb-17c8-4d6a-a49b-45ec6c12701d" class="">We will then import it in another file called <code>app.js</code> and use it there. How interesting, right 😂? Let&#x27;s check out the code:</p><p id="87a22322-5c16-473c-a205-5875b606b195" class="">This is the code in <code>hello.js</code> file:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="97d87e34-ffe7-4db9-b443-9facddfa46ae" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function sayHello(name){
+    console.log(`Hello ${name}`);
+}
+
+module.exports = sayHello</code></pre><p id="e5f9ca1f-1bb1-4886-8f0c-64d3999f5cfd" class="">This is the code in <code>app.js</code> file:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dd44d055-0bdc-4756-a0be-aa9418be25ff" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const sayHello = require(&#x27;./hello.js&#x27;);
+
+sayHello(&#x27;John&#x27;);
+sayHello(&#x27;Peter&#x27;);
+sayHello(&#x27;Rohit&#x27;);</code></pre><p id="2b415914-f62a-43fb-9fdb-1dc11a09196c" class="">The file <code>hello.js</code> can be called the <code>module</code> in this case. Every module has an object called <code>exports</code> which should contain all the stuff you want to export from this module like variables or functions. In our case, we are defining a function in the <code>hello.js</code> file and directly exporting it.</p><p id="8c2c89bd-3903-4433-82b9-c88fb571548b" class="">The <code>app.js</code> file imports the <code>sayHello()</code> function from <code>hello.js</code> and stores it in the <code>sayHello</code> variable. To import something from a module, we use the <code>require()</code> method which accepts the path to the module. Now we can simply invoke the variable and pass a name as a parameter. Running the code in <code>app.js</code> file will produce the following output:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9cb7da85-17d8-4e74-969d-4f70deb6c272" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">Hello John
+Hello Peter
+Hello Rohit</code></pre><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Short Note on </strong><code><strong>module.exports</strong></code></summary><div class="indented"><p id="063c954b-69e9-43f6-9dc4-e3301440f615" class="">In the previous section of the article, we saw how to use <code>module.exports</code> but I felt that it is important to understand how it works in a bit more detail. Hence, this section of the article is like a mini tutorial where we will see how we can export one variable/function as well as multiple variables and functions using <code>module.exports</code>. So, Let&#x27;s get started:</p><p id="c1450fee-2e31-4361-b8bc-98dd92c9dc24" class=""><code>module.exports</code> is a special object in NodeJS that allows you to export functions, objects, or values from a module, so that other modules can access and use them. Here&#x27;s an example of how to use <code>module.exports</code> to export a function from a module:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9e918d69-7cec-4b46-a420-15d5f8697050" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// myModule.js
+
+function myFunction() {
+  console.log(&#x27;Hello from myFunction!&#x27;);
+}
+
+module.exports = myFunction;</code></pre><p id="9f41e38c-aa9a-46f0-b5ef-5578910980c7" class="">In this example, we define a function <code>myFunction</code> and then export it using <code>module.exports</code>. Other modules can now require this module and use the exported function:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cb63f274-bad3-4e3d-98ec-40946b498f4c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// app.js
+
+const myFunction = require(&#x27;./myModule&#x27;);
+
+myFunction(); // logs &#x27;Hello from myFunction!&#x27;</code></pre><p id="8cf452fb-4cf5-4231-a06e-f7831e8de67d" class="">Everything seems fine now and life is good. But the problem arises when we have to export multiple functions and variables from a single file. The point is when you use <code>module.exports</code> multiple times in a single module, it will replace the previously assigned value with the new one. Consider this code:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f54fef34-9d36-4b46-82dc-98b7ccb32294" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// module.js
+
+function myFunction() {
+  console.log(&#x27;Hello from myFunction!&#x27;);
+}
+
+function myFunction2() {
+  console.log(&#x27;Hello from myFunction2!&#x27;);
+}
+
+// First Export
+module.exports = myFunction;
+
+// Second Export
+module.exports = myFunction2;</code></pre><p id="d0b4eea6-d10d-444d-89c0-9b6a847cd69b" class="">In this example, we first export <code>myFunction()</code>. But we then overwrite <code>module.exports</code> with a new function - <code>myFunction2()</code>. As a result, only the second export statement will take effect, and the <code>myFunction()</code> function will not be exported.</p><p id="e60fc2a6-2621-43f9-8630-e4d099da8f95" class="">This problem can be solved if you assign <code>module.exports</code> to an object which contains all the functions you want to export, like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7c976a9b-e5fb-4f65-aae7-d40db2f039c9" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// myModule.js
+
+function myFunction1() {
+  console.log(&#x27;Hello from myFunction1!&#x27;);
+}
+
+function myFunction2() {
+  console.log(&#x27;Hello from myFunction2!&#x27;);
+}
+
+module.exports = {
+  foo: &#x27;bar&#x27;,
+  myFunction1: myFunction1,
+  myFunction2: myFunction2
+};</code></pre><p id="a2f23eb5-1116-4d16-ad3d-e1da7735869c" class="">In this example, we export an object with three properties: <code>foo</code>, <code>myFunction1</code>, and <code>myFunction2</code>. Other modules can require this module and access these properties:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e727cab1-06c0-4201-a9b9-6cdb259c8175" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// app.js
+
+const myModule = require(&#x27;./myModule&#x27;);
+
+console.log(myModule.foo); // logs &#x27;bar&#x27;
+myModule.myFunction1(); // logs &#x27;Hello from myFunction1!&#x27;
+myModule.myFunction2(); // logs &#x27;Hello from myFunction2!&#x27;</code></pre><p id="9a23dd71-2799-4af3-9a36-6de28b044bf1" class="">To summarize, you can use <code>module.exports</code> as many times as you want in your NodeJS code, but you should be aware that each new assignment will replace the previous one. You should use an object to group multiple exports together.</p></div></details></div></details><hr id="d4440508-0bf9-4720-8eda-04845f98562f"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>Types Of Modules in Node</strong></summary><div class="indented"><p id="6f90e61f-0793-48f7-b8d0-7252530e45d6" class="">There are 2 types of modules in NodeJS:</p><ul id="68858c83-0414-4191-a529-038bf132e2ee" class="bulleted-list"><li style="list-style-type:disc"><strong>Built In Modules</strong>: These are modules included in Node by default, so you can use them without installation. You just need to import them and get started.</li></ul><ul id="10c75250-3ac3-421b-99ca-bf973e6ac7a9" class="bulleted-list"><li style="list-style-type:disc"><strong>External Modules</strong>: These are modules created by other developers which are not included by default. So you need to install them first before using them.</li></ul><p id="c1231ebe-2128-4fec-83ff-a8939b34989a" class="">Here is an image of popular built-in modules in NodeJS and what can you do using them:</p><figure id="7ba7f7d4-7f49-4d7d-8590-f3b8a2521b21" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/image-137-1.png"><img style="width:700px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/image-137-1.png"/></a></figure><p id="593238e2-473a-4422-a4a3-12e789e38a8c" class="">Let&#x27;s go over each of these in more detail so you can learn more about what they do.</p></div></details><hr id="223447ee-87d0-4aa8-8030-0904e131006d"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>The HTTP Module</strong></summary><div class="indented"><p id="ceda7408-c8a2-4c49-a4b2-3df14fc428d3" class="">Let&#x27;s move forward and learn the HTTP Module which helps you create Web Servers.</p><p id="7edd2399-9981-4e3a-b2b0-869f8e2e720c" class="">HTTP stands for Hypertext Transfer Protocol. It is used to transfer data over the internet which allows communication between clients and servers.</p><p id="60a2d833-3c4d-41c2-8208-d5101b90fff8" class="">Suppose you want to watch some YouTube videos, you go to your web browser and type in: <a href="https://youtube.com/">https://youtube.com</a>, and then YouTube&#x27;s home page gets displayed on your screen. This entire process happened because of communication between your machine (client) and YouTube&#x27;s Server. The client, in this case, your machine requested for YouTube&#x27;s home page and the server sent back the HTML, CSS and JS Files as the response.</p><p id="575402cd-d4d0-4113-ae2f-58e389e79d7f" class="">The client sends a request to the server in the form of a URL with some additional information, such as headers and query parameters.</p><p id="bc36d299-94dd-4ec4-8911-d9b9befd3670" class="">The server processes the request, performs necessary operations, and sends a response back to the client. The response contains a status code, headers, and the response body with the requested data.</p><figure id="83cb4d76-4830-4f84-9abc-4b39bcc004fb" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/9ef9b0bc-2b5c-433e-b39e-439993d53982.png"><img style="width:700px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/9ef9b0bc-2b5c-433e-b39e-439993d53982.png"/></a></figure><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Components Of Request-Response</strong></summary><div class="indented"><p id="41bae443-572d-413b-a392-dc941ced4f0e" class="">Both the Request (sent by client to the server) and the Response (sent by server to the client) comprises of 3 parts:</p><ol type="1" id="6af6c94a-d990-471e-8447-17bc2272d7d0" class="numbered-list" start="1"><li><strong>The Status Line</strong>: This is the first line of the request or response. It contains information about the message, such as the method used, URL, protocol version, and so on.</li></ol><ol type="1" id="b3254baa-2745-4cf1-bdb6-106378c64e72" class="numbered-list" start="2"><li><strong>The Header</strong>: This is a collection of key-value pairs, separated by colon. The headers include additional information about the message such as the content type, content length, caching information, and so on.</li></ol><ol type="1" id="4287c276-3521-4b3d-97f4-914eb804552d" class="numbered-list" start="3"><li><strong>The Body</strong>: The Body contains the actual data being sent or received. In the case of requests, it might contain form data or query parameters. In the case of responses, it could be HTML, JSON, XML, or any other data format.</li></ol><p id="9a208654-ba26-466d-8172-06dd5f15c47d" class="">The 3 components of a Request and Response are described in much more detail in the below image:</p><figure id="3af6262d-dace-44ab-9649-58da1f3bf649" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/9e0fc122-3902-4284-9907-d0713bfbd0b1.png"><img style="width:700px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/9e0fc122-3902-4284-9907-d0713bfbd0b1.png"/></a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>What are HTTP Methods?</strong></summary><div class="indented"><p id="bd47e7f9-bea4-4a06-82dc-adce99e09c2a" class="">HTTP methods, also known as HTTP verbs, are actions that a Client can perform on a Server. The 4 HTTP Methods are:</p><ul id="8c56fc00-39f0-4b33-a000-5a89c9ae4af7" class="bulleted-list"><li style="list-style-type:disc">GET: Retrieves a resource from the server</li></ul><ul id="b97173d1-5854-49da-8002-556317c8febc" class="bulleted-list"><li style="list-style-type:disc">POST: Inserts a resource in the server</li></ul><ul id="1cb586fe-feb2-4141-91f2-ba128da450e0" class="bulleted-list"><li style="list-style-type:disc">PUT: Updates an existing resource in the server</li></ul><ul id="a4907e6a-b274-43b6-9546-9e4578450b90" class="bulleted-list"><li style="list-style-type:disc">DELETE: Deletes a resource from the server</li></ul><p id="0d82b712-c86a-4599-88bf-773d7d4794e8" class="">This might sound complicated, but let&#x27;s try to understand these methods with the help of an example:</p><ol type="1" id="c8b45c68-6e95-467d-8554-b1267ed9cd4c" class="numbered-list" start="1"><li><strong>GET:</strong> Retrieves a resource from the server<p id="8796c580-f8b0-47ac-910f-85350f76e70b" class=""> when you enter <code><a href="http://www.google.com/">http://www.google.com</a></code> in your web browser&#x27;s address bar and press enter, your browser sends an HTTP GET request to the Google server asking for the HTML content of the Google homepage. That&#x27;s then rendered and displayed by your browser.</p></li></ol><ol type="1" id="77086215-1d4f-4283-a145-fd1248435c73" class="numbered-list" start="2"><li><strong>POST</strong>: Inserts a resource in the server <p id="fe77b3cc-4a82-41a0-b694-d5e0e59831f1" class="">Imagine you&#x27;re filling out a registration form to create an account on Google. When you submit the form, your browser sends a POST request to Google&#x27;s server with the data you typed in the form fields like: Username, Age, Birthdate, Address, Phone Number, Email, Gender and so on.The server will then create a new user account in its database storing all the information sent to it using the POST Request. So a POST request is used to add/insert a resource in the server.</p></li></ol><ol type="1" id="f8f00a13-1fa2-4613-aa0e-c40771807c48" class="numbered-list" start="3"><li><strong>PUT</strong>: Updates an existing resource in the server <p id="eb541b0e-7297-4990-b1ae-06d6e17ddd65" class="">Now imagine you want to update your Google account&#x27;s password. You would send a PUT request to the server with the new password. The server would then update your user account in its database with the new password.</p></li></ol><ol type="1" id="62c3d0f4-99f5-4b23-9495-2864aed1dce1" class="numbered-list" start="4"><li><strong>DELETE</strong>: Deletes a resource from the server<p id="f35dc88a-dff4-4a97-b526-93db8867c5cf" class="">Finally, imagine you want to delete your Google user account. You would send a DELETE request to the server indicating that you want your account to be deleted. The server would then delete your user account from its database.</p></li></ol><p id="f5ea6695-ac73-41f9-95c3-5fbcdcca688a" class="">Note that these are just examples. The actual requests and their purposes may vary.</p><p id="021992bf-0bcc-4f2f-beae-57f00758c985" class="">To see more examples of HTTP Methods, you can refer to this image:</p><figure id="88065c1a-6907-4f27-a9ec-0b729222c100" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/577c1df7-def5-42dd-ac65-2e3a15b72288.png"><img style="width:700px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/577c1df7-def5-42dd-ac65-2e3a15b72288.png"/></a></figure><p id="ddf109d8-8b82-48c6-8494-9d6bc9cfeb7a" class=""><a href="https://res.cloudinary.com/diqqf3eq2/image/upload/v1614201237/course%20slides/http-methods_w5lppa.png">Source: https://course-api.com/slides/</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>What is a Status Code?</strong></summary><div class="indented"><p id="b5f68838-20e2-41ba-9fd7-e62bf0dcc26d" class="">HTTP status codes are three-digit numbers that indicate the status of a HTTP request made to a server. They are server responses that provide information about the request&#x27;s outcome. Here are some of the most common HTTP status codes and what they represent:</p><figure id="f74e2a09-da47-4989-bd96-505305aa4933" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/5ccaff5a-0f68-4f19-90a9-bd21202a633a.png"><img style="width:666px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/5ccaff5a-0f68-4f19-90a9-bd21202a633a.png"/></a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Let&#x27;s Create a Server</strong></summary><div class="indented"><p id="77636eeb-ebff-4b4e-861d-dae471d9d210" class="">Finally let&#x27;s move to the good part 🥳🔥 and learn how to create a Web Server using the <code>http</code> module:</p><p id="9f48ca31-5c2d-44e7-9930-8202ae88166b" class=""><strong>Step 1:</strong> Import the <code>http</code> module like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="574cfabf-8c66-4f35-ac84-d8b9b451004b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const http = require(&#x27;http&#x27;);
+</code></pre><p id="013e2a5d-a07f-43ba-944a-b617b1c94b08" class=""><strong>Step 2:</strong> The <code>http</code> module provides you with <code>http.createServer()</code> function which helps you create a server. This function accepts a callback function with 2 parameters – <code>req</code> (which stores the incoming request object) and <code>res</code> which stands for the response to be sent by the server. This callback function gets executed every time someone hits the server.</p><p id="67850e53-96bf-4d17-9bd3-01201d1105fe" class="">This is how we can create a server using the <code>createServer()</code> function:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="95bed4f2-64cd-4e46-9c8f-cf7e63da6306" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const http = require(&#x27;http&#x27;);
+
+const server = http.createServer((req, res) =&gt; {
+	res.end(&#x27;Hello World&#x27;);
+})</code></pre><p id="273d24bf-f388-4114-95cc-1d6b19b1e18d" class="">Note: <code>res.send()</code> is a function attached on the <code>res</code> object using which we can send some data back to the client. Here once we are done setting up the server, you will see a <code>Hello World</code> message in your web browser.</p><p id="5c3418e3-d54c-4e62-a0ee-d4dd05a7d05d" class=""><strong>Step 3:</strong> Listening the server at some port using the <code>listen()</code> method.</p><p id="def40b9f-933d-4c88-8a0e-1cb8d83351cc" class="">The <code>listen()</code> function in Node.js <code>http</code> module is used to start a server that listens for incoming requests. It takes a port number as an argument and binds the server to that port number so that it can receive incoming requests on that port.</p><p id="5d266138-3d83-4704-bc32-2aa3b72aa034" class="">In the below code, we use the <code>listen()</code> function to start the server and bind it to port 5000. The second argument to the <code>listen()</code> function is a callback function that is executed when the server starts listening on the specified port. We are using this callback function just to display a success message in the console.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7acaaa3a-72ca-4c48-a0e1-f677052ce59a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const http = require(&#x27;http&#x27;);
+
+const server = http.createServer((req, res) =&gt; {
+	res.end(&#x27;Hello World&#x27;);
+})
+
+server.listen(5000, () =&gt; {
+	console.log(&#x27;Server listening at port 5000&#x27;);
+})</code></pre><p id="9119b379-62aa-4824-b653-ee3a3654fbab" class="">You are likely to see a  <code>Hello World</code> message when you visit this URL: <a href="http://localhost:5000/">http://localhost:5000/</a>.</p><p id="0d0173b1-4f31-484b-9e6a-90db6bef37f8" class="">If you try to visit some other port like 5001 (<a href="http://localhost:5001/">http://localhost:5001/</a>), which is not bound to your server, you won&#x27;t see any response because your server is not listening on that port. You will likely receive an error message stating that the connection to the server could not be established.</p><p id="9f3ce412-a877-40e2-837f-6036797212e5" class="">At this point, we&#x27;ve made a server that renders a simple <code>Hello World</code> message every time someone tries to access it. This is quite good but there is a problem....</p><p id="f017b8ea-0589-4c8a-9954-2205e5657ae6" class="">The problem is that for every route, the server sends the same message. For example, if I try to access the about page or the contact page, still the server shows the same message:</p><ul id="7fbbcb5b-7759-4422-9128-c2fa4968df9a" class="bulleted-list"><li style="list-style-type:disc"><a href="http://localhost:5000/">http://localhost:5000/</a> -&gt; Hello World</li></ul><ul id="db31383a-ff20-49ef-ba9e-7efa2147ec66" class="bulleted-list"><li style="list-style-type:disc"><a href="http://localhost:5000/">http://localhost:5000/about</a> -&gt; Hello World</li></ul><ul id="f3136abd-0c62-4512-967e-24fe66082bad" class="bulleted-list"><li style="list-style-type:disc"><a href="http://localhost:5000/contact">http://localhost:5000/contact</a> -&gt; Hello World</li></ul><p id="68e18c9a-d5c9-4639-b95c-d443cf48f638" class="">There is a simple way to fix this: there&#x27;s a property called <code>url</code> in the <code>req</code> object which gives the URL of the request or in other words it tells you about the resource the client is trying to access.</p><p id="21e1e77a-ae76-4ca6-8d4e-e6fa77b80bd4" class="">Suppose if I type in: <strong><a href="http://localhost:5000/about">http://localhost:5000/about</a></strong> in my web browser&#x27;s search bar, this means I am performing a GET Request on the server and I am trying to access the <code>/about</code> page. So In this case the value of <code>req.url</code> will be <code>/about</code>.</p><p id="575bfb19-67f5-46da-a28d-49459faac613" class="">Similarly for the below requests, the value of <code>req.url</code> will be:</p><table id="19cf7b20-3a42-4791-867f-612698b6f186" class="simple-table"><tbody><tr id="cc5bcef2-befe-4e2e-aa40-b64ac59404af"><td id="OpGD" class=""><strong>URL</strong></td><td id="Ydaz" class=""><code><strong>REQ.URL</strong></code></td></tr><tr id="6ade4524-6ac5-431c-8f61-2c1109758634"><td id="OpGD" class=""><strong><a href="http://localhost:5000/">http://localhost:5000</a></strong></td><td id="Ydaz" class=""><code>/</code></td></tr><tr id="6e89df9b-2203-4767-a53b-00a72ea4f704"><td id="OpGD" class=""><strong><a href="http://localhost:5000/about">http://localhost:5000/about</a></strong></td><td id="Ydaz" class=""><code>/about</code></td></tr><tr id="ecb555ed-45a8-47f4-ab85-513ed23f55f5"><td id="OpGD" class=""><strong><a href="http://localhost:5000/contact">http://localhost:5000/contact</a></strong></td><td id="Ydaz" class=""><code>/contact</code></td></tr><tr id="a8fd8f7b-d51e-4f11-b0ba-96e79369e3e8"><td id="OpGD" class=""><strong><a href="http://localhost:5000/error">http://localhost:5000/error</a></strong></td><td id="Ydaz" class=""><code>/error</code></td></tr></tbody></table><p id="b44744c8-7f96-4782-970c-eae5a074e914" class="">We can use some conditionals <code>if...else</code> along with the <code>req.url</code> property to make our server respond to different requests differently. This is how we can achieve this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c9ffbe7e-77ed-43db-a245-35eb92507559" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const http = require(&#x27;http&#x27;);
+
+const server = http.createServer((req, res) =&gt; {
+    if(req.url === &#x27;/&#x27;){
+        res.end(&#x27;This is my Home Page&#x27;);
+    } else if(req.url === &#x27;/about&#x27;){
+        res.end(&#x27;This is my About Page&#x27;);
+    } else if(req.url === &#x27;/contact&#x27;){
+        res.end(&#x27;This is my Contact Page&#x27;);
+    } else {
+        res.end(&#x27;404, Resource Not Found&#x27;);
+    }
+})
+
+server.listen(5000, () =&gt; {
+	console.log(&#x27;Server listening at port 5000&#x27;);
+})</code></pre><figure id="f77c473b-1e67-4100-8a67-d156fb24e630" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/a087f16b-6eee-45f3-9875-bfd0cc2f4982--1-.png"><img style="width:700px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/a087f16b-6eee-45f3-9875-bfd0cc2f4982--1-.png"/></a></figure><p id="9c28b278-c8c2-45ae-a66c-825688726ea0" class="">Now we have a perfect server that responds to different requests differently. We are sending back responses using a method called <code>res.end()</code>. But there is an even better way of sending back a response in which we can add on 2 more methods along with <code>res.end()</code>:</p><ol type="1" id="022a0775-1383-4259-9fb7-81bc6dda7b8d" class="numbered-list" start="1"><li><code>res.writeHead()</code> – This method is used to send the response headers to the client. The status code and headers like <code>content-type</code> can be set using this method.</li></ol><ol type="1" id="8bcee15c-897f-442a-bc86-d3c73fba4ce8" class="numbered-list" start="2"><li><code>res.write()</code> – This method is used to send the response body to the client.</li></ol><ol type="1" id="dabaee0a-6404-483b-a526-298727be9c7a" class="numbered-list" start="3"><li><code>res.end()</code> – This method is used to end the response process.</li></ol><p id="b9f17c26-2992-446d-a364-0dfb9a6c09eb" class="">Below is the modified code where we added the <code>writeHead()</code> and <code>write()</code> methods along with <code>end()</code> method:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c7ce1409-0385-4b74-b597-062ee022995b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const http = require(&#x27;http&#x27;);
+
+const server = http.createServer((req, res) =&gt; {
+    if(req.url === &#x27;/&#x27;){
+        res.writeHead(200, {&#x27;content-type&#x27;: &#x27;text/html&#x27;});
+        res.write(&#x27;&lt;h1&gt;Home Page&lt;/h1&gt;&#x27;);
+        res.end();
+    } else if(req.url === &#x27;/about&#x27;){
+        res.writeHead(200, {&#x27;content-type&#x27;: &#x27;text/html&#x27;});
+        res.write(&#x27;&lt;h1&gt;About Page&lt;/h1&gt;&#x27;);
+        res.end();
+    } else if(req.url === &#x27;/contact&#x27;){
+        res.writeHead(200, {&#x27;content-type&#x27;: &#x27;text/html&#x27;});
+        res.write(&#x27;&lt;h1&gt;Contact Page&lt;/h1&gt;&#x27;);
+        res.end();
+    } else {
+        res.writeHead(404, {&#x27;content-type&#x27;: &#x27;text/html&#x27;});
+        res.write(&#x27;&lt;h1&gt;404, Resource Not Found &lt;a href=&quot;/&quot;&gt;Go Back Home&lt;/a&gt;&lt;/h1&gt;&#x27;);
+        res.end();
+    }
+})
+
+server.listen(5000, () =&gt; {
+	console.log(&#x27;Server listening at port 5000&#x27;);
+})</code></pre><figure id="f7cabb07-e04c-4485-82d8-5ef11fe04755" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/91ab5e0d-0368-4619-ba99-059099b26252--1-.png"><img style="width:700px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/91ab5e0d-0368-4619-ba99-059099b26252--1-.png"/></a></figure><p id="18460276-8662-433a-99e1-c62073a43d58" class="">Let&#x27;s break down what&#x27;s happening in the above code:</p><ol type="1" id="a9fb6dbd-17cc-4cd8-9a83-01df70d897c0" class="numbered-list" start="1"><li>Here we are responding differently to different incoming requests by using the <code>req.url</code> property.</li></ol><ol type="1" id="65701328-d300-4b51-b2be-9ca069e69088" class="numbered-list" start="2"><li>In every response, we are doing 3 things:– Setting the response header using the <code>res.writeHead()</code> method. Here we provide 2 parameters to <code>res.writeHead()</code>: the status code and an object which has the <code>content-type</code> property set to <code>text/html</code>– Setting the response body using the <code>res.write()</code> method. Note that instead of sending simple messages, we are actually sending some HTML code in this case,– And closing the response process using the <code>res.end()</code> method.</li></ol><ol type="1" id="d1a40944-c29d-4fc1-a7f4-6efcdf679e54" class="numbered-list" start="3"><li>In case of resources like: <code>/</code>, <code>/about</code> and <code>/contact</code> the status code is set to <code>200</code> which means that the request to access a resource was successful. But if the client tries to access some other resource, they simply get back an error message and the status code is set to <code>404</code>.</li></ol><ol type="1" id="5c432031-1fda-453e-a7b9-2df2487259e3" class="numbered-list" start="4"><li>Here the <code>&#x27;content-type&#x27;: &#x27;text/html&#x27;</code> is a way of telling the browser how it should interpret and display the response. In this case, we are telling the browser to interpret the response as some HTML code. There are different <code>content-type</code>&#x27;s for different types of responses:– To send back JSON data as a response, we need to set the <code>content-type</code> to <code>application/json</code>– To send back CSS as a response, the <code>content-type</code> should be <code>text/css</code>– To send back JavaScript code as a response, the <code>content-type</code> should be <code>text/javascript</code>, and so on...</li></ol><p id="0e88a096-639d-4872-aa31-cfd516beb365" class="">Setting the content type is very important as it determines how the web browser interprets the response. For example: if we just change the content-type from <code>text/html</code> to <code>text/plain</code>, this is how the response will be displayed in the web browser:</p><figure id="ea3aee5b-a93a-42b5-b23e-c9e1cef49407" class="image"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/cd1d0d0b-c224-4970-8dde-5212733892d7--1-.png"><img style="width:700px" src="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/cd1d0d0b-c224-4970-8dde-5212733892d7--1-.png"/></a></figure></div></details></div></details><hr id="39be5d2f-a01c-4f03-915d-6cd9ae62099c"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>The OS Module</strong></summary><div class="indented"><p id="e2ef423b-b8b7-482e-8273-ffa46b9d1eae" class="">The OS Module (as its name implies) provides you methods/functions with which you can get information about your Operating System.</p><p id="d9acca89-ac6f-48f6-a402-8c3a6c0f9067" class="">To use this module, the first step is to import it like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="24c96b92-7468-46c2-a6aa-c77a2818c09d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const os = require(&#x27;os&#x27;);
+</code></pre><p id="c35d8b5d-6699-4a68-b2ca-256b89cb3969" class="">This is how you can use the OS Module to get information about the Operating System:👇</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="01a023c2-8b48-4d4e-99cb-115c2e1779df" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const os = require(&#x27;os&#x27;)
+
+// os.uptime()
+const systemUptime = os.uptime();
+
+// os.userInfo()
+const userInfo = os.userInfo();
+
+// We will store some other information about my WindowsOS in this object:
+const otherInfo = {
+    name: os.type(),
+    release: os.release(),
+    totalMem: os.totalmem(),
+    freeMem: os.freemem(),
+}
+
+// Let&#x27;s Check The Results:
+console.log(systemUptime);
+console.log(userInfo);
+console.log(otherInfo);</code></pre><p id="7ffabd09-bb9b-416f-b873-5eec792a2d84" class="">This is the output of the above code:</p><p id="c37ef124-1782-431c-8442-a995d8b2badc" class="">Note that the output shows information about the Windows Operating System running on my system. The output could be different from yours.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c6711a57-35dc-4594-b324-05c2c845c33b" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">521105
+{
+	uid: -1,
+	gid: -1,
+	username: &#x27;krish&#x27;,
+	homedir: &#x27;C:\\Users\\krish&#x27;,
+	shell: null
+}
+{
+	name: &#x27;Windows_NT&#x27;,
+	release: &#x27;10.0.22621&#x27;,
+	totalMem: 8215212032,
+	freeMem: 1082208256
+}</code></pre><p id="6a8c760a-f31d-450b-8257-60f82787583b" class="">Let&#x27;s break down the above code and output:</p><ul id="f5a90fb8-7e39-43f2-b143-1b3d9c6b90fa" class="bulleted-list"><li style="list-style-type:disc"><code>os.uptime()</code> tells the system uptime in seconds. This function returns the number of seconds the system has been running since it was last rebooted. If you check the first line of the output: <code>521105</code> is the number of seconds, my system has been running since it was last rebooted. Of course, it will be different for you.</li></ul><ul id="36e7618e-ccc0-44b4-bef5-b33fc6ec93e8" class="bulleted-list"><li style="list-style-type:disc"><code>os.userInfo()</code> gives the information about the current user. This function returns an object with information about the current user including the user ID, group ID, username, home directory, and default shell. Below is the breakdown of the output in my case:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2a7eadac-2871-4a95-a5db-2ddd21859af7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">    {
+        uid: -1,
+        gid: -1,
+        username: &#x27;krish&#x27;,
+        homedir: &#x27;C:\\Users\\krish&#x27;,
+        shell: null
+    }
+</code></pre><p id="871c1358-a875-4758-a115-eb542ca0d6c8" class="">The <code>uid</code> and <code>gid</code> is set to <code>-1</code> in Windows, because Windows does not have the concept of user IDs like Unix-based systems. The <code>username</code> of my OS is <code>krish</code> and the home directory is <code>&#x27;C:\\Users\\krish&#x27;</code>. The <code>shell</code> is set to <code>null</code> because the concept of a default shell does not exist on Windows. Windows has a default command interpreter program called Command Prompt (cmd.exe), which runs commands and manages the system.</p><p id="e85e97fe-6c58-4a66-872d-b85bf9a84999" class="">The other methods related to OS Module like <code>os.type()</code>, <code>os.release()</code> and so on, which you saw in the above code has been used within the <code>otherInfo</code> object. Here is a breakdown of what these methods do:</p><ul id="a4424ebd-7f9c-460e-abbd-a61bf26db813" class="bulleted-list"><li style="list-style-type:disc"><code>os.type()</code> - Tells the name of the Operating System</li></ul><ul id="925b84d3-98d0-4e4f-8e18-bca8e2391707" class="bulleted-list"><li style="list-style-type:disc"><code>os.release()</code> - Tells the release version of the Operating System</li></ul><ul id="f87de991-d16b-4b6b-82c8-a115d6b0f948" class="bulleted-list"><li style="list-style-type:disc"><code>os.totalMem()</code> - Tells the total amount of memory available in bytes</li></ul><ul id="dfee7e00-ec75-4e81-9a25-2cb440ffbec3" class="bulleted-list"><li style="list-style-type:disc"><code>os.freeMem()</code> - Tells the total amount of free memory available in bytes</li></ul><p id="41254e00-a4c4-4381-8dc2-6ea2a0c2497e" class="">This is the information which the above methods display about my OS:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d3576ac8-34bc-434c-8a0a-eefaf95f9aa7" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">{
+	name: &#x27;WindowsNT&#x27;, // Name of my OS
+	release: &#x27;10.0.22621&#x27;, // Release Version of my OS
+	totalMem: 8215212032, // Total Memory Available in bytes (~ 8 GB)
+ 	freeMem: 1082208256 // Free Memory Available in bytes (~ 1 GB)
+}</code></pre><p id="f5df06f7-1908-4663-8203-aed2f1a312eb" class="">
+</p></div></details><hr id="85d05e63-22a3-4e22-af2b-b9ccf0fc69bc"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>The PATH Module</strong></summary><div class="indented"><p id="bbf4c9e4-ae7e-4720-8d9c-f2e734cd1137" class="">The PATH module comes in handy while working with file and directory paths. It provides you with various methods with which you can:</p><ul id="6610015c-1584-44cf-834e-1c645078da8a" class="bulleted-list"><li style="list-style-type:disc">Join path segments together</li></ul><ul id="b5b5636c-9770-4e66-8fab-8021528e94aa" class="bulleted-list"><li style="list-style-type:disc">Tell if a path is absolute or not</li></ul><ul id="70cd6194-c1ff-4a1e-a586-fcf2c4ba6379" class="bulleted-list"><li style="list-style-type:disc">Get the last portion/segment of a path</li></ul><ul id="f0d52c50-b9e4-40ec-b48c-152ebde3f8fb" class="bulleted-list"><li style="list-style-type:disc">Get the file extension from a path, and much more!</li></ul><p id="8c850f2f-e5cd-407f-9cec-08a6a1f4260c" class="">You an see the PATH Module in action in the code below.</p><p id="2062e7f1-dc09-4599-8305-751fa7f0ef72" class="">Code:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a9b69ba3-deee-413b-b4f2-a1f5e80106ea" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// Import &#x27;path&#x27; module using the &#x27;require()&#x27; method:
+const path = require(&#x27;path&#x27;)
+
+// Assigning a path to the myPath variable
+const myPath = &#x27;/mnt/c/Desktop/NodeJSTut/app.js&#x27;
+
+const pathInfo = {
+    fileName: path.basename(myPath),
+    folderName: path.dirname(myPath),
+    fileExtension: path.extname(myPath),
+    absoluteOrNot: path.isAbsolute(myPath),
+    detailInfo: path.parse(myPath),
+}
+
+// Let&#x27;s See The Results:
+console.log(pathInfo);</code></pre><p id="52ef05e6-185b-448f-80d4-3f3f38e1bfa9" class="">Output:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cb6bfc26-1a3a-465d-b03e-cd8bd3c1ddc6" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">{
+  fileName: &#x27;app.js&#x27;,
+  folderName: &#x27;/mnt/c/Desktop/NodeJSTut&#x27;,
+  fileExtension: &#x27;.js&#x27;,
+  absoluteOrNot: true,
+  detailInfo: {
+    root: &#x27;/&#x27;,
+    dir: &#x27;/mnt/c/Desktop/NodeJSTut&#x27;,
+    base: &#x27;app.js&#x27;,
+    ext: &#x27;.js&#x27;,
+    name: &#x27;app&#x27;
+  }
+}</code></pre><p id="0296d982-e31e-45f9-8677-71ff1a46b334" class="">Let&#x27;s have a detailed breakdown of the above code and its output:</p><p id="15c2af05-d591-442f-bd8b-dcd277eee18a" class="">The first and foremost step to work with <code>path</code> module is to import it in the <code>app.js</code> file using the <code>require()</code> method.</p><p id="d8abaf34-a6a1-4564-80ef-aee1ddb320e2" class="">Next, we are assigning a path of some file to a variable called <code>myPath</code>. This can be a path to any random file. For the purpose of understanding the <code>path</code> module, I chose this: <code>/mnt/c/Desktop/NodeJSTut/app.js</code>.</p><p id="717c5e15-5a73-4bc9-b527-c9c90df3a655" class="">Using the <code>myPath</code> variable, we will understand the <code>path</code> module in detail. Let&#x27;s check out the functions which this module has to offer and what can we do with it:</p><ul id="fb0a3961-db8d-4911-9bea-abd4dcff4368" class="bulleted-list"><li style="list-style-type:disc"><code>path.basename(myPath)</code>: The <code>basename()</code> function accepts a path and returns the last part of that path. In our case, the last part of <code>myPath</code> is: <code>app.js</code>.</li></ul><ul id="23e18d5a-2c6e-4885-b31b-f430d21aa8be" class="bulleted-list"><li style="list-style-type:disc"><code>path.dirname(myPath)</code>: The <code>dirname()</code> function selects the last part of the path provided to it and returns the path to it&#x27;s parent&#x27;s directory. In our case, since the last part of <code>myPath</code> is <code>app.js</code>. The <code>dirname()</code> function returns the path to the parent directory of <code>app.js</code> (the folder inside which <code>app.js</code> file lies), i.e, <code>/mnt/c/Desktop/NodeJSTut</code>. It can be also thought as: the <code>dirname()</code> function simply excludes the last part of the path provided to it and returns the leftover path.</li></ul><ul id="d58d98a7-71b6-4465-aed2-98c7873e3a4b" class="bulleted-list"><li style="list-style-type:disc"><code>path.extname(myPath)</code>: This function checks for any extension on the last part of the provided path and it returns the file extension (if it exists), otherwise it returns an empty string: <code>&#x27;&#x27;</code>. In our case, since the last part is <code>app.js</code> and a file extension exists, we get <code>&#x27;.js&#x27;</code> as the output.</li></ul><ul id="547d4d3a-0e63-4e1a-9267-cfd543fe6801" class="bulleted-list"><li style="list-style-type:disc"><code>path.isAbsolute(myPath)</code>: This tells whether the provided path is absolute or not. On Unix-based systems (such as macOS and Linux), an absolute path always starts with the forward slash (<code>/</code>). On Windows systems, an absolute path can start with a drive letter (such as <code>C:</code>) followed by a colon (<code>:</code>), or with two backslashes (<code>\\</code>). Since the value stored in <code>myPath</code> variable starts with <code>/</code>, therefore <code>isAbsolute()</code> returns <code>true</code>.However, if you just change the <code>myPath</code> variable to this: <code>Desktop/NodeJSTut/app.js</code> (converting it to a relative path), <code>isAbsolute()</code> returns <code>false</code>.</li></ul><ul id="36177dd0-d301-4c08-8a87-128f59f4ef8c" class="bulleted-list"><li style="list-style-type:disc"><code>path.parse(myPath)</code>: This function accepts a path and returns an object which contains a detailed breakdown of the path provided to it. Here is what it returns when we provide the <code>myPath</code> variable to it:1. <code>root</code>: The root of the path (in this case, <code>/</code>).2. <code>dir</code>: The directory of the file (in this case, <code>/mnt/c/Desktop/NodeJSTut</code>).3. <code>base</code>: The base file name (in this case, <code>app.js</code>).4. <code>ext</code>: The file extension (in this case, <code>.js</code>).5. <code>name</code>: The base name of the file, without the extension (in this case, <code>app</code>).</li></ul></div></details><hr id="324dd227-8377-444a-9860-642036ea7cce"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0"><strong>The FS Module</strong></summary><div class="indented"><p id="cd71ed25-31d0-43a6-a9a5-1fda077e6f8c" class="">This module helps you with file handling operations such as:</p><ul id="39afb36b-f5e4-44aa-a4c8-b90c2db1a1ee" class="bulleted-list"><li style="list-style-type:disc">Reading a file (sync or async way)</li></ul><ul id="25f1398e-1704-4d26-9e8c-35edee26e9f7" class="bulleted-list"><li style="list-style-type:disc">Writing to a file (sync or async way)</li></ul><ul id="828b1172-9e27-4f2b-8e33-7a543b79b05d" class="bulleted-list"><li style="list-style-type:disc">Deleting a file</li></ul><ul id="3d73ecfb-245f-447c-b24b-16e87481395c" class="bulleted-list"><li style="list-style-type:disc">Reading the contents of a director</li></ul><ul id="38e16eb2-a0f0-4852-a437-619de7805d57" class="bulleted-list"><li style="list-style-type:disc">Renaming a file</li></ul><ul id="f5d36061-bf80-4b46-ad96-490b4514f245" class="bulleted-list"><li style="list-style-type:disc">Watching for changes in a file, and much more</li></ul><p id="3d70173b-da1a-44f7-91dc-8f180599ffca" class="">Let&#x27;s perform some of these tasks to see the <code>fs</code> (File System) module in action below:</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>How to create a directory using </strong><code><strong>fs.mkdir()</strong></code></summary><div class="indented"><p id="e7aefc72-0b53-405a-8091-fd5346b646cf" class="">The <code>fs.mkdir()</code> function in Node.js is used to create a new directory. It takes two arguments: the path of the directory to be created and an optional callback function that gets executed when the operation is complete.</p><ul id="9193b5b1-33e8-40de-8e16-13bbfbe25f2e" class="bulleted-list"><li style="list-style-type:disc"><strong>path</strong>: Here, path refers to the location where you want to create a new folder. This can be an absolute or a relative path. In my case, the path to the present working directory (the folder I am currently in), is: <code>C:\Desktop\NodeJSTut</code>. So, Let&#x27;s create a folder in the <code>NodeJSTut</code> directory called <code>myFolder</code>.</li></ul><ul id="0d0fddb7-cd46-483e-87a0-05b8b43d4cc0" class="bulleted-list"><li style="list-style-type:disc"><strong>callback function: </strong>The purpose of the callback function is to notify that the directory creation process has completed. This is necessary because the <code>fs.mkdir()</code> function is asynchronous, meaning that it does not block the execution of the rest of the code while the operation is in progress. Instead, it immediately returns control to the callback function, allowing it to continue executing other tasks. Once the directory has been created, the callback function is called with an error object (if any) and any other relevant data related to the operation. In the below code, we are just using it to display a success message in the console or any error.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8551be02-b979-4ef1-b1ac-33f05d586d8f" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">// Import fs module
+const fs = require(&#x27;fs&#x27;);
+
+// Present Working Directory: C:\Desktop\NodeJSTut
+// Making a new directory called ./myFolder:
+
+fs.mkdir(&#x27;./myFolder&#x27;, (err) =&gt; {
+    if(err){
+    	console.log(err);
+    } else{
+    	console.log(&#x27;Folder Created Successfully&#x27;);
+    }
+})</code></pre><p id="61240f12-e5ec-44db-ba1f-84576f05c8c9" class="">After executing the above code, you will see a new folder called <code>myFolder</code> created in the <code>NodeJSTut</code> directory.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>How to create and write to a file asynchronously using </strong><code><strong>fs.writeFile()</strong></code></summary><div class="indented"><p id="8991084d-daed-474f-9660-33145f1fb88b" class="">After the <code>myFolder</code> directory is created successfully, it&#x27;s time to create a file and write something to it by using the <code>fs</code> module.</p><p id="d597c04a-d577-456a-96ad-00824d63471e" class="">There are basically 2 ways of doing this:</p><ul id="a76c20f4-a578-4335-abce-7e2be8bddce1" class="bulleted-list"><li style="list-style-type:disc"><strong>Synchronous Approach:</strong> In this approach, we create a file and write the data to it in a blocking manner, which means that NodeJS waits for the creation and write operation to complete before moving on to the next line of code. If an error occurs during this process, it throws an exception that must be caught using <code>try...catch</code>.</li></ul><ul id="f56c1f7c-10b0-4e9a-bcf7-445578faed32" class="bulleted-list"><li style="list-style-type:disc"><strong>Asynchronous Approach:</strong> In this approach, we create and write data to a file in a non-blocking manner, which means that NodeJS does not wait for the write operation to complete before moving on to the next line of code. Instead, it takes a callback function that gets called once the entire process is completed. If an error occurs during the write operation, the error object is passed to the callback function.</li></ul><p id="3ba1d19e-4f43-4cb4-a77d-6f28b84ba773" class="">In this tutorial, we will be using the <code>fs.writeFile()</code> function which follows the asynchronous approach.</p><p id="fae6a40b-333b-4982-bd2c-09a669d0c956" class=""><code>writeFile()</code> is a method provided by the <code>fs</code> (file system) module in Node.js. It is used to write data to a file asynchronously. The method takes three arguments:</p><ol type="1" id="b3f78605-e97e-4cf9-97a3-ac9c1adad2e3" class="numbered-list" start="1"><li>The <strong>path</strong> of the file to write to (including the file name and extension)</li></ol><ol type="1" id="de3d6365-2723-4a35-b364-d49c74bb7c11" class="numbered-list" start="2"><li>The <strong>data</strong> to write to the file (as a string or buffer)</li></ol><ol type="1" id="ecaca03a-ab25-4c89-aac8-2f8c81f0cf7b" class="numbered-list" start="3"><li>An optional <strong>callback function</strong> that is called once the write operation is complete or an error occurs during the write operation.</li></ol><p id="fc32dbf5-dc53-42dd-8b9a-091cf31398ca" class="">When <code>writeFile()</code> is called, Node.js creates a new file or overwrites an existing file at the specified <strong>path</strong>. It then writes the provided <strong>data</strong> to the file and closes it. Since the method is asynchronous, the write operation does not block the event loop, allowing other operations to be performed in the meantime.</p><p id="6dc5a084-ef5b-4b1f-b6b9-cb497846d30b" class="">Below is the code where we create a new file called <code>myFile.txt</code> in the <code>myFolder</code> directory and write this <code>data</code> to it: <code>Hi,this is newFile.txt</code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dbb476a4-0754-4299-a98e-1792424e8678" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const fs = require(&#x27;fs&#x27;);
+
+const data = &quot;Hi,this is newFile.txt&quot;;
+
+fs.writeFile(&#x27;./myFolder/myFile.txt&#x27;, data, (err)=&gt; {
+    if(err){
+        console.log(err);
+        return;
+    } else {
+    	console.log(&#x27;Writen to file successfully!&#x27;);
+    }
+})</code></pre><p id="cc7a8d0e-e8b6-4462-9755-6883e92630cc" class="">Since <code>newFile.txt</code> didn&#x27;t exist previously, Hence the <code>writeFile()</code> function created this file for us on the provided path and then wrote the value in the <code>data</code> variable to the file. Suppose this file already existed. In that case, <code>writeFile()</code> will just open the file, erase all the existing text present in it and then write the data to it.</p><p id="aa8c956a-ea27-4051-a69d-97e78ffd0383" class="">The problem with this code is: when you run the same code multiple times, it erases the previous data that is already present in <code>newFile.txt</code> and writes the data to it.</p><p id="84237e3e-4472-4b61-92a0-bff295238675" class="">In case you do not want the original data to get deleted and just want the new data to be added/appended at the end of the file, you need to make a little change in the above code by adding this &quot;options object&quot;: <code>{flag: &#x27;a&#x27;}</code> as the third parameter to <code>writeFile()</code> – like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28275002-5861-42e5-938a-c7389357da0c" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const fs = require(&#x27;fs&#x27;);
+
+const data = &#x27;Hi,this is newFile.txt&#x27;;
+
+fs.writeFile(&#x27;./myFolder/myFile.txt&#x27;, data, {flag: &#x27;a&#x27;}, (err) =&gt; {
+    if(err){
+        console.log(err);
+        return;
+    } else {
+    	console.log(&#x27;Writen to file successfully!&#x27;);
+    }
+})</code></pre><p id="859f9186-8edd-4a6f-a675-74b466c79bfd" class="">Once you run the above code again and again, you will see that the <code>myFile.txt</code> has the value of the <code>data</code> variable written to it multiple times. This is because the object (3rd parameter): <code>{flag: &#x27;a&#x27;}</code> indicates the <code>writeFile()</code> method to append the <code>data</code> at the end of the file instead of erasing the previous data present in it.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>How to read a file asynchronously using </strong><code><strong>fs.readFile()</strong></code></summary><div class="indented"><p id="d4edf59d-d66c-4f22-874c-82abd791f5bd" class="">After creating and writing to the file, it&#x27;s time we learn how to read the data present in the file using the <code>fs</code> module.</p><p id="aacc10c0-72e9-4d09-b6e6-f8eaa2fddbee" class="">Again there are 2 ways of doing this: Synchronous approach and the Asynchronous approach (just like the previous function). Here we are going to use the <code>readFile()</code> function provided by <code>fs</code> module which performs the reading operation asynchronously.</p><p id="34e6c9b9-4bf7-4c73-a1e7-73508997c050" class="">The <code>readFile()</code> function takes 3 parameters:</p><ol type="1" id="b023a3fa-d307-4b71-abb3-cd38dfc6e31a" class="numbered-list" start="1"><li>The <strong>path</strong> to the file which is to be read.</li></ol><ol type="1" id="59a56f12-e6e9-4a02-8386-4925077cc1a8" class="numbered-list" start="2"><li>The <strong>encoding</strong> of the file.</li></ol><ol type="1" id="0433f602-d7de-4419-aa6c-a26a62111c5e" class="numbered-list" start="3"><li>The <strong>callback function</strong> that gets executed once the reading operation is completed or if any error occurs during the reading operation. It accepts 2 parameters: first parameter stores the file data (if read operation is successful) and the second parameter stores the error object (if read operation fails due to some error).</li></ol><p id="7176ef12-46a6-41d0-960a-7e6f0ae555e7" class="">The <code>readFile()</code> function is very intuitive and once called, it reads the data present in the provided file according to the given encoding. If the read operation is successful, it returns the data to the callback function and if not, it will return the error occurred.</p><p id="90257680-f908-4b34-999b-b0f46334cf6d" class="">In the below code, we read the contents of the file - <code>myFile.txt</code> which we had created while learning the previous function and then log the data stored in it in the console.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="368c1e01-8bbd-47ba-a19c-61fbd7ff4a5b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const fs = require(&#x27;fs&#x27;);
+
+fs.readFile(&#x27;./myFolder/myFile.txt&#x27;, {encoding: &#x27;utf-8&#x27;}, (err, data) =&gt; {
+    if(err){
+    	console.log(err);
+        return;
+    } else {
+    	console.log(&#x27;File read successfully! Here is the data&#x27;);
+        console.log(data);
+    }
+})</code></pre><p id="a70fc6bc-3e9c-46c2-a9e0-599b1bb3ef35" class="">It is to be noted here that the <code>encoding</code> property is set to <code>&#x27;utf-8&#x27;</code>. At this point, some of you may not know about the encoding property, So Let&#x27;s understand it in a bit more detail:</p><p id="76f8df12-974d-4f47-b893-82c2a6ce6144" class="">The <code>encoding</code> parameter in the <code>fs.readFile()</code> method of Node.js is used to specify the character encoding used to interpret the file data. By default, if no <code>encoding</code> parameter is provided, the method returns a raw buffer.</p><p id="9e4ab60e-6044-439e-ad74-ae15589a3457" class="">If the <code>readFile()</code> method is called without providing an <code>encoding</code> parameter, you will see a result similar to this printed in the console:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c47a5ea4-d623-4f9f-9859-bb1f8763ecc9" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">&lt;Buffer 54 68 69 73 20 69 73 20 73 6f 6d 65 20 64 61 74 61 20 69 6e 20 61 20 66 69 6c 65&gt;
+</code></pre><p id="c1471808-c1f7-4c80-856a-735f70348820" class="">This raw buffer is difficult to read and interpret as it represents the contents of the file in binary form. To convert the buffer to a readable string, you can specify an <code>encoding</code> parameter when calling <code>readFile()</code>.</p><p id="b9d26b19-5b45-4878-a55a-83b4b375f716" class="">In our case, we specified the <code>&#x27;utf8&#x27;</code> encoding as the second parameter of the <code>readFile()</code> method. This tells Node.js to interpret the file contents as a string using the UTF-8 character encoding, thus you see the original data printed in the console. Other common encodings that can be used with <code>readFile()</code> include:</p><ul id="2ef64cff-b93c-4d3c-9cbe-267ac16ce50a" class="bulleted-list"><li style="list-style-type:disc"><code>&#x27;ascii&#x27;</code>: Interpret the file contents as ASCII-encoded text.</li></ul><ul id="3aea71b2-ae2c-4bfa-a1d0-a3372f47b928" class="bulleted-list"><li style="list-style-type:disc"><code>&#x27;utf16le&#x27;</code>: Interpret the file contents as 16-bit Unicode text in little-endian byte order.</li></ul><ul id="ef80e528-688c-426c-95ba-60d815ea70bf" class="bulleted-list"><li style="list-style-type:disc"><code>&#x27;latin1&#x27;</code>: Interpret the file contents as ISO-8859-1 (also known as Latin-1) encoded text.</li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Reading and Writing to a File Synchronously</strong></summary><div class="indented"><p id="1edab939-5b82-46ef-aebd-80e739617a9f" class="">Up until now, you have learned how to write to and read the data from a file asynchronously. But there are synchronous alternatives to the 2 functions we learnt above, namely: <code>readFileSync()</code> and <code>writeFileSync()</code>.</p><p id="508484a3-e2d9-4667-8d41-3470554d265e" class="">Note that since these are synchronous operations, they need to be wrapped in a <code>try...catch</code> block. In case the operations fail for some reason, the errors thrown will be caught by the <code>catch</code> block.</p><p id="ca5c9b91-e7e2-47c3-9075-0d9f51cd7c6f" class="">In the below code, we first create a new file: <code>./myFolder/myFileSync.txt</code> and write to it using the <code>writeFileSync()</code> method. Then we read the contents of the file using the <code>readFileSync()</code> method and print the data in the console:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f925228b-50cc-4133-8819-3c934ee5900b" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const fs = require(&#x27;fs&#x27;);
+
+try{
+    // Write to file synchronously
+    fs.writeFileSync(&#x27;./myFolder/myFileSync.txt&#x27;, &#x27;myFileSync says Hi&#x27;);
+    console.log(&#x27;Write operation successful&#x27;);
+
+    // Read file synchronously
+    const fileData = fs.readFileSync(&#x27;./myFolder/myFileSync.txt&#x27;, &#x27;utf-8&#x27;);
+    console.log(&#x27;Read operation successful. Here is the data:&#x27;);
+    console.log(fileData);
+
+} catch(err){
+    console.log(&#x27;Error occurred!&#x27;);
+    console.log(err);
+}</code></pre><p id="5c287d5b-3e13-47d4-93b9-c4a4e3f8aead" class="">When you run the above code, a new file called <code>myFileSync.txt</code> is created in the <code>myFolder</code> directory and it contains the following text in it: <code>myFileSync says Hi</code>. This is the output printed in the console:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d0cf967-39f0-4cbc-82a4-81ea77adc115" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Write operation successful
+Read operation successful. Here is the data:
+myFileSync says Hi</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>How to read the contents of a directory using </strong><code><strong>fs.readdir()</strong></code></summary><div class="indented"><p id="9d40aacb-da73-46ea-94e4-5b5822de873c" class="">If you have been following along until now, you will see that we currently have 2 files in the <code>myFolder</code> directory, i.e, <code>myFile.txt</code> and <code>myFileSync.txt</code>. The <code>fs</code> module provides you with <code>readdir()</code> function using which you can read the contents of a directory (the files and folders present in the directory).</p><p id="383fb1c4-4639-444e-8d14-e7467be761aa" class="">The <code>readdir()</code> function accepts 2 parameters:</p><ul id="9d66ea40-2d84-435a-8788-206de611b812" class="bulleted-list"><li style="list-style-type:disc">The <strong>path</strong> of the folder whose contents are to be read.</li></ul><ul id="c495edf9-a1bc-4433-864a-a2e6027fa8dd" class="bulleted-list"><li style="list-style-type:disc"><strong>Callback function</strong> which gets executed once the operation is completed or if any error occurs during the operation. This function accepts 2 parameters: The first one which accepts the error object (if any error occurs) and the second parameter which accepts an array of the various files and folders present in the directory whose path has been provided.</li></ul><p id="624fecd6-f041-4cbe-adb0-7dc7e229de41" class="">In the code below, we are reading the contents of the <code>myFolder</code> directory and printing the result in the console.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a3816a00-e145-4aab-aefe-b2b5013f551d" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const fs = require(&#x27;fs&#x27;);
+
+fs.readdir(&#x27;./myFolder&#x27;, (err, files) =&gt; {
+    if(err){
+    	console.log(err);
+        return;
+    }
+    console.log(&#x27;Directory read successfully! Here are the files:&#x27;);
+    console.log(files);
+})</code></pre><p id="ee96ce17-cd69-4c4b-a884-25c973219ce4" class="">This is what we get as output when we run the above code:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cf0ef058-ecf7-462f-9e6a-e0c9e081dc6f" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">[ &#x27;myFile.txt&#x27;, &#x27;myFileSync.txt&#x27; ]</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>How to rename a file using </strong><code><strong>fs.rename()</strong></code></summary><div class="indented"><p id="d3e438e2-e07c-40cb-b401-8b746863f5f2" class="">The <code>fs.rename()</code> method in Node.js is used to rename a file or directory. The method takes two arguments, the current file path and the new file path, and a callback function that is executed when the renaming is complete.</p><p id="76d81216-67e0-4d41-91e0-a175fa64b7ec" class="">Here&#x27;s the syntax for the <code>fs.rename()</code> method:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="784cc314-c479-47fc-9cd6-788ff4b4fd32" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">fs.rename(oldPath, newPath, callback);</code></pre><p id="8e41ab65-72ef-4afc-a210-95284f727b5e" class="">where:</p><ul id="3d915c97-b0a4-4fe5-97b7-9e3f391136dc" class="bulleted-list"><li style="list-style-type:disc"><code>oldPath</code> (string) - The current file path</li></ul><ul id="a7936f8c-504a-47a1-99db-f615c6444ab1" class="bulleted-list"><li style="list-style-type:disc"><code>newPath</code> (string) - The new file path</li></ul><ul id="dc19185b-c8cb-4054-adf9-2baf23a80330" class="bulleted-list"><li style="list-style-type:disc"><code>callback</code> (function) - A callback function to be executed when the renaming is complete. This function takes an error object as its only parameter.</li></ul><p id="84522e19-e536-44c7-a8e0-d78ff4662767" class="">Let&#x27;s rename the <code>newFile.txt</code> file to <code>newFileAsync.txt</code>:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bd353140-2053-418a-b583-b22f3accf752" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const fs = require(&#x27;fs&#x27;);
+
+fs.rename(&#x27;./newFolder/newFile.txt&#x27;, &#x27;./newFolder/newFileAsync.txt&#x27;, (err)=&gt;{
+    if(err){
+    	console.log(err);
+        return;
+    }
+    console.log(&#x27;File renamed successfully!&#x27;)
+})</code></pre><p id="adf197a5-c459-4c50-8276-6f2c7ef46210" class="">Once you run the above code, you will see that the <code>newFile.txt</code> gets renamed to <code>newFileAsync.txt</code>.</p><p id="1d4065ca-52eb-44fa-abc9-fd1b4198f323" class="">Note that you should only provide valid paths (absolute or relative) to the <code>rename()</code> function and not just the names of the files. Remember it&#x27;s <code>oldPath</code> and <code>newPath</code> and NOT <code>oldName</code> and <code>newName</code>.</p><p id="6e78c458-c133-4b26-a960-7fb1816be23e" class="">For example, consider this code: <code>fs.rename(&#x27;./newFolder/newFile.txt&#x27;, &#x27;newFileAsync.txt&#x27;, ...rest of the code)</code>. In this case, since we did not provide a proper path in the 2nd parameter, <code>rename()</code> assumes that the path to the newly named file should be: <code>./newFileAsync.txt</code>. Thus, it basically removes the <code>newFile.txt</code> from the <code>newFolder</code> directory, renames the file to <code>newFileAsync.txt</code> and moves it to the current working directory.</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>How to delete a file using </strong><code><strong>fs.unlink()</strong></code></summary><div class="indented"><p id="8e6cdae0-0ca7-4311-98ff-e2aebd286525" class="">Last but not the least, we have the <code>fs.unlink()</code> function which is used to delete a file. It takes in 2 parameters:</p><ul id="6e715f62-cfda-40d6-a46a-6db936ea5ed6" class="bulleted-list"><li style="list-style-type:disc">The path of the file which you want to delete, and</li></ul><ul id="c5699841-c5f7-461c-8981-e9a2893f8bf0" class="bulleted-list"><li style="list-style-type:disc">The callback function which gets executed once the delete operation is over or if any error occurs during the operation.</li></ul><p id="314366fb-bce7-40ce-a279-3f68f2132326" class="">Running the following code deletes the <code>newFileSync.txt</code> file present in the <code>myFolder</code> directory:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4a3161d9-df95-403f-9472-22d7691daa6a" class="code"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">const fs = require(&#x27;fs&#x27;);
+
+fs.unlink(&#x27;./myFolder/myFileSync.txt&#x27;, (err) =&gt; {
+    if(err){
+        console.log(err);
+        return;
+    }
+    console.log(&#x27;File Deleted Successfully!&#x27;)
+})</code></pre></div></details></div></details><hr id="9e3d0e76-8fd9-4542-9916-74516bbd0c78"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Exercise 🏋️‍♂️</summary><div class="indented"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e327a5ad-e06b-4cfb-b2c1-bba2cb9b59d9"><div style="font-size:1.5em"><span class="icon">✍🏾</span></div><div style="width:100%">Write a NodeJS code to serve different files to the client based on the URL. The files can be HTML, CSS, JS or any media. Give it a try. If you get stuck, feel free to revisit the topics.</div></figure><figure id="c4c873a6-7182-4091-88b3-14acb1e97386" class="link-to-page"><a href="Node%20JS%20-%20Tutorial%202024%204697d754cf0c4d78a5a7d9bb0e030a58/Solution%20Code%20for%20Exercise%20c4c873a67182409188b314acb1e97386.html">Solution Code for Exercise</a></figure></div></details><hr id="4855c533-063d-4504-93bb-8df1b9af48ca"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">What next?</summary><div class="indented"><p id="32df4d88-a45b-4c1b-a009-6c8aeb46bbd6" class="">After mastering Node.js, your next steps should focus on advancing your skills in <strong>asynchronous programming</strong>, understanding <strong>Express.js</strong> for building robust APIs and web applications, integrating various <strong>databases</strong>, implementing secure authentication mechanisms, and mastering error handling and logging. Dive into testing and debugging practices, explore deployment strategies to cloud platforms or containers, optimize performance, and stay updated with Node.js ecosystem trends. Build practical projects, contribute to open-source, and consider expanding into related technologies like front-end frameworks and serverless architecture to broaden your expertise and excel in modern web development. Continuous learning and hands-on experience will solidify your capabilities and open new opportunities in your career as a developer.</p></div></details><hr id="9a0c3339-8e9e-4ab4-ae9a-aad56a37fc92"/><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">Conclusion</summary><div class="indented"><p id="1fdbba7e-dca8-4b38-b015-849ccd342d2b" class="">With this we come to the end  – I hope you liked it and learned a lot about Node.</p><p id="471d3459-687b-41e2-87d3-087eed7a3a3f" class="">Connect with us on LinkedIn:<mark class="highlight-teal_background"> </mark><mark class="highlight-teal_background"><a href="https://www.linkedin.com/in/ashik-irfan">Mohamed Ashik Irfan M</a></mark><mark class="highlight-teal_background"><strong> </strong></mark> &amp; <mark class="highlight-teal_background"><a href="https://www.linkedin.com/in/harish-ananthakrishnan-r">Harish Anantha Krishnan R</a></mark>, DMs Open.</p><p id="54fe82cb-5b99-4501-816a-83c04a30cc8f" class="">See you next time 👋 ❤️ ✨</p></div></details><p id="f8d2a69a-4783-4a7e-8093-e9db50c7b55a" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
